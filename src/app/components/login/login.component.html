@@ -1,0 +1,59 @@
+<div class="login-container">
+  <form
+    class="login-form"
+    [formGroup]="formLogin"
+    (ngSubmit)="logarUsuario()"
+    novalidate
+  >
+    <h2>Login</h2>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        formControlName="email"
+        required
+      />
+    </div>
+    @if(formLogin.get('email').hasError('email') &&
+    formLogin.get('email').touched){
+    <p>Por favor informe um email válido</p>
+    }@else if(formLogin.get('email').hasError('required') &&
+    formLogin.get('email').touched){
+    <p>Email é <strong>obrigatório</strong></p>
+    }
+
+    <div class="form-group">
+      <label for="senha">Password</label>
+      <input
+        type="password"
+        id="senha"
+        placeholder="Enter your password"
+        formControlName="senha"
+        required
+      />
+    </div>
+
+    @if(formLogin.get('senha').hasError('required') &&
+    formLogin.get('senha').touched){
+    <p>Por favor informe uma senha válida</p>
+    }@else if(formLogin.get('senha').hasError('required') &&
+    formLogin.get('senha').touched){
+    <p>Senha é <strong>obrigatório</strong></p>
+    }
+
+    <button type="submit" class="login-button">Login</button>
+
+    <div>
+      @if(!usuarioLogado()){
+      <button mat-raised-button (click)="logarUsuarioComGoogle()">
+        Logar com Google
+      </button>
+      }
+    </div>
+  </form>
+</div>
+
+<router-outlet />

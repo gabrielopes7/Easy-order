@@ -1,0 +1,57 @@
+<header>
+  <nav>
+      <div class="logo">Minha Empresa</div>
+      <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#contato">Contato</a></li>
+      </ul>
+  </nav>
+</header>
+
+<div class="select-component">
+  <mat-form-field>
+    <mat-label>Escolha um Usuário</mat-label>
+    <input type="text"
+           aria-label="Escolha um usuário"
+           matInput
+           #input
+           [formControl]="myAutocompleteControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      @for(option of filteredPerson | async; track option.name){
+        <mat-option [value]="option.name">{{option.role}}: {{option.name}}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+
+<table-component></table-component>
+
+
+<section class="hero">
+  <div class="hero-content">
+      <h1>Bem-vindo à Minha Empresa</h1>
+      <p>Oferecendo os melhores produtos para você</p>
+      <a href="#produtos" class="btn">Conheça nossos produtos</a>
+  </div>
+</section>
+
+<section id="produtos" class="products">
+  <h2>Nossos Produtos</h2>
+  <div class="product-grid">
+      <div class="product-card">
+          <h3>Produto 1</h3>
+          <p>Descrição do Produto 1.</p>
+      </div>
+      <div class="product-card">
+          <h3>Produto 2</h3>
+          <p>Descrição do Produto 2.</p>
+      </div>
+  </div>
+</section>
+<footer>
+  <p>&copy; 2024 Minha Empresa. Todos os direitos reservados.</p>
+</footer>
+<router-outlet />
