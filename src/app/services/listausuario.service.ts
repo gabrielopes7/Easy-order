@@ -4,20 +4,17 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 import { SortDirection } from '@angular/material/sort';
-import { S } from '@angular/cdk/keycodes';
-import { ListaUsuario, Usuario } from '../components/tabela/tabela/tabela.component';
 import { usuarioAutenticadoGuard } from './guards/usuario-autenticado.guard';
+import { Usuario } from '../components/home/home.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListaUsuarioService {
 
-  private apiUrl = "http://192.168.2.189:45455/api/getListaUsuario/";
-  private apiTabelaUrl = "http://192.168.2.189:45455/api/getListaUsuarioTabela/";
+  private apiUrl = "http://192.168.15.95:45457/api/pegarListaUsuario/";
 
-  constructor(private httpClient: HttpClient,
-              private router: Router) {}
+  constructor(private httpClient: HttpClient) {}
 
 
   buscarListaUsuario(value: string) : Observable<Usuario[]>{
@@ -35,23 +32,6 @@ export class ListaUsuarioService {
     return this.httpClient.get<Usuario[]>(this.apiUrl, options).pipe(
       map(data => data.slice(0,100))
     );
-  }
-
-  buscarListaUsuarioTabela(order: SortDirection, page: number) : Observable<ListaUsuario>{
-    const httpHeaders = new HttpHeaders({
-        'Content-Type': 'application/json',
-         'Access-Control-Allow-Origin': '*',
-      })
-
-    const httpParams = new HttpParams().set('order', order).set('page', page);
-
-    const options ={
-      headers: httpHeaders,
-      params: httpParams
-
-    }
-
-    return this.httpClient.get<ListaUsuario>(this.apiTabelaUrl, options);
   }
 
 }

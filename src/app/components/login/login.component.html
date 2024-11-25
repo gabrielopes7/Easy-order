@@ -45,15 +45,5 @@
     }
 
     <button type="submit" class="login-button">Login</button>
-
-    <div>
-      @if(!usuarioLogado()){
-      <button mat-raised-button (click)="logarUsuarioComGoogle()">
-        Logar com Google
-      </button>
-      }
-    </div>
   </form>
 </div>
-
-<router-outlet />

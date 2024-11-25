@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UsuarioService {
-  private apiUrl = 'http://192.168.2.189:45455/api/loginUsuario';
+  private apiUrl = 'http://192.168.15.95:45455/api/LoginUsuario';
 
   constructor(private client: HttpClient, private router: Router) {}
 

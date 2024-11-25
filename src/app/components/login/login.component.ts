@@ -1,7 +1,6 @@
-import { AuthGoogleService } from './../../services/auth-google.service';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { IUsuario } from '../../interfaces/iusuario';
@@ -15,7 +14,7 @@ import {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, MatButtonModule, MatIconModule],
+  imports: [ReactiveFormsModule, MatButtonModule, MatIconModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -24,14 +23,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
-    private authGoogleService: AuthGoogleService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {
-
-    if(this.authGoogleService.usuarioLogadoComGoogle())
-      this.router.navigate(['home']);
-  }
+  ) {}
 
   ngOnInit(): void {
     this.criarForm();
@@ -49,15 +43,8 @@ export class LoginComponent implements OnInit {
     if (!this.formLogin.invalid) {
       this.usuarioService.logarUsuario(usuario).subscribe({
         next: () => this.router.navigate(['home']),
-        error: (error) => console.log(error)
+        error: (error) => console.log(error),
       });
     }
-  }
-  logarUsuarioComGoogle() {
-    this.authGoogleService.login();
-  }
-
-  usuarioLogado() {
-    return this.authGoogleService.usuarioLogadoComGoogle();
   }
 }
