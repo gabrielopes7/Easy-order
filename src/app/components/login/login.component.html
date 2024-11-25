@@ -5,14 +5,14 @@
     (ngSubmit)="logarUsuario()"
     novalidate
   >
-    <h2>Login</h2>
+    <h2>Acesse sua conta</h2>
 
-    <div class="form-group">
-      <label for="email">Email</label>
+    <div class="input-group input-group-lg mb-4">
       <input
+        class="form-control"
         type="email"
         id="email"
-        placeholder="Enter your email"
+        placeholder="Email"
         formControlName="email"
         required
       />
@@ -25,12 +25,12 @@
     <p>Email é <strong>obrigatório</strong></p>
     }
 
-    <div class="form-group">
-      <label for="senha">Password</label>
+    <div class="input-group input-group-lg mb-4">
       <input
+        class="form-control"
         type="password"
         id="senha"
-        placeholder="Enter your password"
+        placeholder="Senha"
         formControlName="senha"
         required
       />
@@ -39,11 +39,15 @@
     @if(formLogin.get('senha').hasError('required') &&
     formLogin.get('senha').touched){
     <p>Por favor informe uma senha válida</p>
-    }@else if(formLogin.get('senha').hasError('required') &&
-    formLogin.get('senha').touched){
-    <p>Senha é <strong>obrigatório</strong></p>
     }
 
-    <button type="submit" class="login-button">Login</button>
+    <button type="submit" class="btn btn-lg btn-login">Login</button>
+    <button
+      (click)="criarContaUsuario()"
+      type="button"
+      class="btn btn-lg btn-cadastre mt-2"
+    >
+      Criar uma conta
+    </button>
   </form>
 </div>

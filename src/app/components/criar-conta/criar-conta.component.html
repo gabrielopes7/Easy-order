@@ -1,0 +1,123 @@
+<div class="login-container">
+  <form
+    class="login-form"
+    [formGroup]="formCriarContaUsuario"
+    (ngSubmit)="logarUsuario()"
+    novalidate
+  >
+    <h2>Registre sua conta</h2>
+
+    <div class="input-group input-group-lg mb-4">
+      <input
+        class="form-control"
+        type="text"
+        id="nomeUsuario"
+        placeholder="Nome Completo"
+        formControlName="nomeCompleto"
+        required
+      />
+    </div>
+
+    @if(formCriarContaUsuario.get('nomeCompleto').hasError('required') &&
+    formCriarContaUsuario.get('nomeCompleto').touched){
+    <p>Nome completo é <strong>obrigatório</strong></p>
+    }@else if (formCriarContaUsuario.get('nomeCompleto').hasError('minlength') &&
+    formCriarContaUsuario.get('nomeCompleto').touched) {
+      <p>Nome completo deve ter no<strong> mínimo 3 caracteres</strong></p>
+    }
+
+    <div class="input-group input-group-lg mb-4">
+      <input
+        class="form-control"
+        type="date"
+        id="dataNascimento"
+        formControlName="dataNascimento"
+        required
+      />
+    </div>
+
+    @if(formCriarContaUsuario.get('dataNascimento').hasError('required') &&
+    formCriarContaUsuario.get('dataNascimento').touched){
+    <p>Data de Nascimento é <strong>obrigatória</strong></p>
+    }
+
+    <div class="input-group input-group-lg mb-4">
+      <input
+        class="form-control"
+        type="email"
+        id="email"
+        placeholder="Email"
+        formControlName="email"
+        required
+      />
+    </div>
+    @if(formCriarContaUsuario.get('email').hasError('email') &&
+    formCriarContaUsuario.get('email').touched){
+    <p>Por favor informe um email válido</p>
+    }@else if(formCriarContaUsuario.get('email').hasError('required') &&
+    formCriarContaUsuario.get('email').touched){
+    <p>Email é <strong>obrigatório</strong></p>
+    }
+    <div class="input-group input-group-lg mb-4">
+      <input
+        class="form-control"
+        type="email"
+        id="emailConfirmar"
+        placeholder="Confirmar o Email"
+        formControlName="emailConfirmar"
+        required
+      />
+    </div>
+
+    @if(formCriarContaUsuario.get('emailConfirmar').hasError('emailConfirmar')
+    && formCriarContaUsuario.get('emailConfirmar').touched){
+    <p>Por favor informe uma email para confirmação válido</p>
+    }@else if(formCriarContaUsuario.get('emailConfirmar').hasError('required')
+    && formCriarContaUsuario.get('emailConfirmar').touched){
+    <p>Confirmar o email é <strong>obrigatório</strong></p>
+    }@else if(formCriarContaUsuario.get('emailConfirmar').hasError('controlMismatch') &&
+    formCriarContaUsuario.get('emailConfirmar').touched){
+      <p>Os emails <strong>NÂO</strong> são iguais.</p>
+    }
+
+    <div class="input-group input-group-lg mb-4">
+      <input
+        class="form-control"
+        type="password"
+        id="senha"
+        placeholder="Senha"
+        formControlName="senha"
+        required
+      />
+    </div>
+
+    @if(formCriarContaUsuario.get('senha').hasError('required') &&
+    formCriarContaUsuario.get('senha').touched){
+    <p>Senha é <strong>obrigatório</strong></p>
+    }@else if (formCriarContaUsuario.get('senha').hasError('minlength') &&
+    formCriarContaUsuario.get('senha').touched) {
+      <p>Senha deve ter no<strong> mínimo 8 caracteres</strong></p>
+    }
+
+    <div class="input-group input-group-lg mb-4">
+      <input
+        class="form-control"
+        type="password"
+        id="senhaConfirmar"
+        placeholder="Confirmar a Senha"
+        formControlName="senhaConfirmar"
+        required
+      />
+    </div>
+
+    @if(formCriarContaUsuario.get('senhaConfirmar').hasError('required') &&
+    formCriarContaUsuario.get('senhaConfirmar').touched){
+    <p>Confirmar a senha é <strong>obrigatório</strong></p>
+    }@else if(formCriarContaUsuario.get('senhaConfirmar').hasError('controlMismatch') &&
+    formCriarContaUsuario.get('senhaConfirmar').touched){
+      <p>As senhas <strong>NÂO</strong> são iguais.</p>
+    }
+
+    <button type="submit" class="btn btn-lg btn-login" [disabled]="formCriarContaUsuario.invalid">Registrar conta</button>
+  </form>
+</div>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { IUsuario } from '../../interfaces/iusuario';
 import {
   FormBuilder,
@@ -14,7 +12,7 @@ import {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, MatButtonModule, MatIconModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -46,5 +44,9 @@ export class LoginComponent implements OnInit {
         error: (error) => console.log(error),
       });
     }
+  }
+
+  criarContaUsuario(){
+    this.router.navigate(['criar-conta']);
   }
 }
