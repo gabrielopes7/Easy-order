@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     let usuario = this.formLogin.getRawValue() as IUsuario;
     if (!this.formLogin.invalid) {
       this.usuarioService.logarUsuario(usuario).subscribe({
-        next: () => this.router.navigate(['home']),
+        next: () => this.router.navigate(['/']),
         error: (error) => console.log(error),
       });
     }

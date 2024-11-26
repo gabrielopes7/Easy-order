@@ -2,7 +2,7 @@
   <form
     class="login-form"
     [formGroup]="formCriarContaUsuario"
-    (ngSubmit)="logarUsuario()"
+    (ngSubmit)="criarUsuario()"
     novalidate
   >
     <h2>Registre sua conta</h2>
@@ -11,19 +11,19 @@
       <input
         class="form-control"
         type="text"
-        id="nomeUsuario"
+        id="nome"
         placeholder="Nome Completo"
-        formControlName="nomeCompleto"
+        formControlName="nome"
         required
       />
     </div>
 
-    @if(formCriarContaUsuario.get('nomeCompleto').hasError('required') &&
-    formCriarContaUsuario.get('nomeCompleto').touched){
-    <p>Nome completo é <strong>obrigatório</strong></p>
-    }@else if (formCriarContaUsuario.get('nomeCompleto').hasError('minlength') &&
-    formCriarContaUsuario.get('nomeCompleto').touched) {
-      <p>Nome completo deve ter no<strong> mínimo 3 caracteres</strong></p>
+    @if(formCriarContaUsuario.get('nome').hasError('required') &&
+    formCriarContaUsuario.get('nome').touched){
+    <p>Nome é <strong>obrigatório</strong></p>
+    }@else if (formCriarContaUsuario.get('nome').hasError('minlength') &&
+    formCriarContaUsuario.get('nome').touched) {
+      <p>Nome deve ter no<strong> mínimo 3 caracteres</strong></p>
     }
 
     <div class="input-group input-group-lg mb-4">

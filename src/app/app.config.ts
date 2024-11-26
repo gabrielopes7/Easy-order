@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { tokenInterceptor } from './services/interceptors/token.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideOAuthClient } from 'angular-oauth2-oidc';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
@@ -18,7 +17,6 @@ export const appConfig: ApplicationConfig = {
                 useValue: tokenInterceptor,
                 multi: true
               },
-              provideOAuthClient(),
               provideAnimationsAsync()
   ]
 };

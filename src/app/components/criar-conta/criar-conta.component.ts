@@ -33,7 +33,7 @@ export class CriarContaComponent implements OnInit {
   criarForm() {
     this.formCriarContaUsuario = this.formBuilder.group(
       {
-        nomeCompleto: ['', [Validators.required, Validators.minLength(3)]],
+        nome: ['', [Validators.required, Validators.minLength(3)]],
         dataNascimento: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         emailConfirmar: ['', [Validators.required, Validators.email]],
@@ -49,12 +49,12 @@ export class CriarContaComponent implements OnInit {
     );
   }
 
-  logarUsuario() {
+  criarUsuario() {
     let registroUsuario =
       this.formCriarContaUsuario.getRawValue() as IRegistroUsuario;
     if (!this.formCriarContaUsuario.invalid) {
-      this.usuarioService.logarUsuario(registroUsuario).subscribe({
-        next: () => this.router.navigate(['home']),
+      this.usuarioService.criarUsuario(registroUsuario).subscribe({
+        next: () => this.router.navigate(['/']),
         error: (error) => console.log(error),
       });
     }
