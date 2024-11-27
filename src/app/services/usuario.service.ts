@@ -26,7 +26,7 @@ export class UsuarioService {
 
     return this.client.post<any>(this.apiUrlLogar, usuario, httpHeaders).pipe(
       tap((response) => {
-        sessionStorage.setItem('authUsuario', JSON.stringify(response));
+        sessionStorage.setItem('currentUser', JSON.stringify({id: response.idUsuario, token: response.token}));
       })
     );
   }
@@ -47,15 +47,17 @@ export class UsuarioService {
   }
 
   usuarioLogado(): boolean {
-    return sessionStorage.getItem('authUsuario') ? true : false;
+    return sessionStorage.getItem('currentUser') ? true : false;
   }
 
   obterTokenUsuario() {
-    return sessionStorage.getItem('authUsuario');
+    var currentUser = sessionStorage.getItem('currentUser');
+    var tokenUser = currentUser ? JSON.parse(currentUser) : {};
+    return tokenUser.token;
   }
 
-  deslogar() {
-    sessionStorage.clear();
+  deslogar(): void {
+    sessionStorage.removeItem('currentUser')
     this.router.navigate(['/']);
   }
 }
